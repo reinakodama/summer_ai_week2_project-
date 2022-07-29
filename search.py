@@ -104,7 +104,7 @@ def depthFirstSearch(problem: SearchProblem):
             for child, actions, costs in problem.getSuccessors(current_node):
                 if(child not in visited):
                     my_stack.push((child, action + [actions],cost))
-    util.raiseNotDefined()
+
 
 def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
@@ -126,7 +126,6 @@ def breadthFirstSearch(problem: SearchProblem):
                 if(child not in visited):
                     my_queue.push((child, action + [actions],cost))
 
-    util.raiseNotDefined()
 
 def uniformCostSearch(problem: SearchProblem):
     """Search the node of least total cost first."""
