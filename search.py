@@ -86,11 +86,46 @@ def depthFirstSearch(problem: SearchProblem):
     print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     "*** YOUR CODE HERE ***"
+    my_stack = util.Stack()
+    visited = []
+    goal_found = False
+    start_state = problem.getStartState()
+    #node = start_state
+    my_stack.push((start_state, [], 0))
+
+    while not goal_found:
+        current_node, action, cost = my_stack.pop()
+
+        if(problem.isGoalState(current_node)):
+            goal_found = True
+            return action
+        else:
+            visited.append(current_node)
+            for child, actions, costs in problem.getSuccessors(current_node):
+                if(child not in visited):
+                    my_stack.push((child, action + [actions],cost))
     util.raiseNotDefined()
 
 def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
+    my_queue = util.Queue()
+    visited = []
+    goal_found = False
+    start_state = problem.getStartState()
+    my_queue.push((start_state, [], 0))
+
+    while not goal_found:
+        current_node, action, cost = my_queue.pop()
+        if(problem.isGoalState(current_node)):
+            goal_found = True
+            return action
+        else:
+            visited.append(current_node)
+            for child, actions, costs in problem.getSuccessors(current_node):
+                if(child not in visited):
+                    my_queue.push((child, action + [actions],cost))
+
     util.raiseNotDefined()
 
 def uniformCostSearch(problem: SearchProblem):
